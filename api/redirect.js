@@ -13,19 +13,19 @@ export default async function handler(req, res) {
       res.end(JSON.stringify({ error: "Missing SUBSTACK_URL env variable" }));
       return;
     }
-
-    // Required shortlink identifier (your LinkedIn post or static placement ID)
-    const id = (req.query.id || req.query.utm_content || "").toString();
+    
+    // Required shortlink identifier (your placement ID)
+    const id = (req.query.id || "").toString();
     if (!id) {
       res.statusCode = 400;
       res.setHeader("Content-Type", "application/json");
-      res.end(JSON.stringify({ error: "Missing required query param: id" }));
+      res.end(JSON.stringify({ error: "Missing required path id. Use /r/:id" }));
       return;
     }
-
-    // UTM defaults; can be overridden via query string
+    
+    // UTMs (content defaults to id if omitted)
     const utm_source   = (req.query.utm_source   || "linkedin").toString();
-    const utm_medium   = (req.query.utm_medium   || "organic_social").toString(); // changed default
+    const utm_medium   = (req.query.utm_medium   || "organic_social").toString();
     const utm_campaign = (req.query.utm_campaign || DEFAULT_CAMPAIGN).toString();
     const utm_content  = (req.query.utm_content  || id).toString();
 
