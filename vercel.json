@@ -1,6 +1,8 @@
 {
   "rewrites": [
-    { "source": "/r/:id", "destination": "/api/redirect?id=:id" },
-    { "source": "/r/:id/", "destination": "/api/redirect?id=:id" }
+    { "source": "/r/:id",  "destination": "/api/redirect?id=:id" },
+    { "source": "/r/:id/", "destination": "/api/redirect?id=:id" },
+    { "source": "/r",      "destination": "/api/redirect?id=homepage" },
+    { "source": "/r/",     "destination": "/api/redirect?id=homepage" }
   ]
 }
