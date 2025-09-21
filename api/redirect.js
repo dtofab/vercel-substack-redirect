@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     }
 
     // Required shortlink identifier (your LinkedIn post or static placement ID)
-    const id = (req.query.id || "").toString();
+    const id = (req.query.id || req.query.utm_content || "").toString();
     if (!id) {
       res.statusCode = 400;
       res.setHeader("Content-Type", "application/json");
